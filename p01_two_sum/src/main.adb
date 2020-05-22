@@ -10,11 +10,19 @@ with Ada.Text_IO; use Ada.Text_IO;
 -- return [0, 1].
 
 procedure Main is
-   Target: Integer := 0;
-   type List is array (Integer range <>) of Integer;
+   Target: Long_Integer := 0;
+   type Mint is mod 2**3;
+   type List is array (Mint range <>) of Integer;
    nums: List := (1, 2, 4, 6 ,7);
+
+   function myfunc(x: Integer) return Integer is
+   begin
+      return x*2;
+   end myfunc;
+
 begin
-   for count in nums'Range loop
-      put_line(integer'image(count));
+   for count in nums'First..nums'Last-1 loop
+      put(Mint'image(count)); put(" "); put(Integer'Image(myfunc(Integer(count)))); put(" ");
+      put_line(Integer'Image(nums(count)));
    end loop;
 end Main;
